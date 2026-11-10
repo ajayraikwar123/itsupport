@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TicketDesk – Support</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- LOGIN -->
+<section id="login" class="login">
+  <div class="hero">
+    <div class="brand"><span class="logo"><img src="logo.png" alt="Logo" onload="this.parentNode.classList.add('has-img')" onerror="this.remove()">T</span> TicketDesk</div>
+    <h1>Every request,<br>answered and closed.</h1>
+    <p>Raise a ticket, follow its progress, and get an email the moment it is resolved.</p>
+    <div class="stub"><span>TK-0042</span><i></i><span>In progress</span></div>
+    <div class="stub s2"><span>TK-0041</span><i></i><span>Closed ✓</span></div>
+  </div>
+  <div class="panel">
+    <form id="authForm" class="card" autocomplete="on">
+      <div class="tabs"><button type="button" class="on" data-mode="login">Sign in</button><button type="button" data-mode="register">Create account</button></div>
+      <h2 id="authTitle">Welcome back</h2>
+      <label class="reg">Full name<input id="aName" placeholder="Your name"></label>
+      <label>Email<input id="aEmail" type="email" placeholder="you@company.com" required></label>
+      <label>Password<input id="aPass" type="password" placeholder="••••••••" required></label>
+      <div id="authErr" class="err"></div>
+      <button class="btn big" id="authBtn">Sign in</button>
+    </form>
+    <p class="credit"><span class="pill"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.4 6.6L21 11l-6.6 2.4L12 20l-2.4-6.6L3 11l6.6-2.4z"/></svg><span>This website design & Managed by <b>Ajay Raikwar</b> @ 2026</span></span></p>
+  </div>
+</section>
+
+<!-- APP -->
+<section id="app" class="app hidden">
+  <aside class="side">
+    <div class="brand"><span class="logo"><img src="logo.png" alt="Logo" onload="this.parentNode.classList.add('has-img')" onerror="this.remove()">T</span> TicketDesk</div>
+    <nav id="nav">
+      <button data-v="all" class="on">All tickets</button>
+      <button data-v="pending">Pending</button>
+      <button data-v="done">Completed</button>
+      <button data-v="report">Monthly report</button>
+    </nav>
+    <div class="me"><b id="meName"></b><small id="meRole"></small><button id="logout" class="link">Sign out</button></div>
+  </aside>
+  <main>
+    <header class="top">
+      <h2 id="viewTitle">All tickets</h2>
+      <button class="btn" id="newBtn">+ New ticket</button>
+    </header>
+
+    <div id="tickets">
+      <div class="stats" id="stats"></div>
+      <div class="tools">
+        <input id="q" placeholder="Search by ID, title or user…">
+        <select id="fCenter"><option value="">All centers</option></select>
+        <select id="fPri"><option value="">Any priority</option><option>Low</option><option>Medium</option><option>High</option><option>Urgent</option></select>
+      </div>
+      <div class="tablewrap"><table>
+        <thead><tr><th>ID</th><th>Title</th><th>Center</th><th>Priority</th><th>Status</th><th>Raised by</th><th>Created</th><th></th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table></div>
+    </div>
+
+    <div id="report" class="hidden">
+      <div class="tools"><label class="inl">Month <input type="month" id="month"></label></div>
+      <div class="stats" id="rStats"></div>
+      <div class="two"><div class="box"><h3>By priority</h3><div id="rPri"></div></div><div class="box"><h3>By category</h3><div id="rCat"></div></div><div class="box"><h3>By center</h3><div id="rCen"></div></div><div class="box"><h3>Solved by (agent)</h3><div id="rAgent"></div></div></div>
+      <button class="btn ghost" id="printBtn">Print / save as PDF</button>
+    </div>
+  </main>
+</section>
+
+<!-- MODAL -->
+<div id="modal" class="modal hidden"><form id="tForm" class="mbox">
+  <h3 id="mTitle">New ticket</h3>
+  <label>Title<input id="tTitle" required maxlength="120"></label>
+  <label>Description<textarea id="tDesc" rows="4"></textarea></label>
+  <div class="grid2">
+    <label>Priority<select id="tPri"><option>Low</option><option selected>Medium</option><option>High</option><option>Urgent</option></select></label>
+    <label>Category<select id="tCat"><option>General</option><option>Bug</option><option>Account</option><option>Billing</option><option>Feature request</option></select></label>
+  </div>
+  <label>Center / location<select id="tCenter"><option value="">Select center…</option></select></label>
+  <div class="grid2 adm hidden">
+    <label>Status<select id="tStatus"><option>Open</option><option>In Progress</option><option>Closed</option></select></label>
+    <label>Resolution note (sent by email)<input id="tRes" placeholder="What was done?"></label>
+  </div>
+  <p id="tClosed" class="note hidden"></p>
+  <div id="tErr" class="err"></div>
+  <div class="mact"><button type="button" class="btn ghost" id="cancel">Cancel</button><button class="btn" id="saveBtn">Save ticket</button></div>
+</form></div>
+<div id="toast" class="toast"></div>
+<script src="app.js"></script>
+</body>
+</html>
